@@ -1,10 +1,6 @@
 import json
 from pprint import pprint
 
-with open('votes.json') as data_file:
-    data = json.load(data_file)
-
-
 def get_winner(candidates):
     return max(candidates, key=candidates.get)
 
@@ -17,7 +13,7 @@ def get_winner_triple(triple, c1, c2):
     else:
         return c2
 
-def get_plurality_total_winner(data):
+def state_plurality_runoff(data):
     # initialize result dict
     result = {"C":0, "T":0, "J":0}
     transitionTable = {"CJT":"C", "CTJ":"C", "JCT":"J", "JTC":"J", "TJC":"T", "TCJ": "T"}
@@ -32,8 +28,20 @@ def get_plurality_total_winner(data):
         winner = get_winner(top_2_result)
         result[winner] = result[winner] + state['seats']
 
-    print(result)
-    return result
+    max = 0
+    winner = ""
+    for c in result:
+        if result[c] > max:
+            max = result[c]
+            winner = c
+
+    if winner == "T":
+        winner = "Trump"
+    elif winner == "C":
+        winner = "Clinton"
+    elif winner == "J":
+        winner = "Johnson"
+    return ("Winner is " + winner + " with " + str(max) + " seats")
 
 
 def get_top_2(state):
@@ -45,10 +53,3 @@ def get_top_2(state):
     del result[get_loser(result)]
     return result
 
-
-
-
-
-
-
-pprint(get_plurality_total_winner(data))

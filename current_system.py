@@ -18,26 +18,26 @@ def get_plurality_winner(item):
             return "Johnson"
 
 
-json_data = open("votes.json").read()
-votes = json.loads(json_data)
+# json_data = open("votes.json").read()
+# votes = json.loads(json_data)
 
-result = dict()
+def current_system(votes):
+    result = dict()
 
-for state in votes:
-    winner = get_plurality_winner(state)
-    seats = state.get("seats",0)
-    # print(state.get("name") + " winner: " +  str(winner) + " with " + str(seats))
-    result[winner] = result.get(winner,0) + seats
+    for state in votes:
+        winner = get_plurality_winner(state)
+        seats = state.get("seats",0)
+        # print(state.get("name") + " winner: " +  str(winner) + " with " + str(seats))
+        result[winner] = result.get(winner,0) + seats
 
-winner = ""
-max = 0
-for r in result:
-    if result[r] > max:
-        max = result[r]
-        winner = r
+    winner = ""
+    max = 0
+    for r in result:
+        if result[r] > max:
+            max = result[r]
+            winner = r
 
-print("Winner is " + winner + " with " + str(max) + " seats")
-print(result)
+    return("Winner is " + winner + " with " + str(max) + " seats")
 
 
 
