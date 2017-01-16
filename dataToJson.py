@@ -8,15 +8,15 @@ data = []
 
 for i in range(5,56):
     state = dict()
-    state['name'] = str(ws["A" + str(i)])
-    state['population'] = str(ws["B" + str(i)])
-    state['seats'] = str(ws["C" + str(i)])
-    state['TCJ'] = str(ws["E" + str(i)])
-    state['TBJ'] = str(ws["F" + str(i)])
-    state['CTJ'] = str(ws["G" + str(i)])
-    state['CJT'] = str(ws["H" + str(i)])
-    state['JTC'] = str(ws["I" + str(i)])
-    state['JCT'] = str(ws["J" + str(i)])
+    state['name'] = ws["A" + str(i)].value
+    state['population'] = ws["B" + str(i)].value
+    state['seats'] = ws["C" + str(i)].value
+    state['TCJ'] = ws["E" + str(i)].value
+    state['TBJ'] = ws["F" + str(i)].value
+    state['CTJ'] = ws["G" + str(i)].value
+    state['CJT'] = ws["H" + str(i)].value
+    state['JTC'] = ws["I" + str(i)].value
+    state['JCT'] = ws["J" + str(i)].value
     data.append(state)
 
 with open('votes.json', 'w') as outfile:
