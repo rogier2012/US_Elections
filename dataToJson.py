@@ -6,13 +6,13 @@ ws = wb2.active
 
 data = []
 
-for i in range(5,56):
+for i in range(5,57):
     state = dict()
     state['name'] = ws["A" + str(i)].value
     state['population'] = ws["B" + str(i)].value
     state['seats'] = ws["C" + str(i)].value
     state['TCJ'] = ws["E" + str(i)].value
-    state['TBJ'] = ws["F" + str(i)].value
+    state['TJC'] = ws["F" + str(i)].value
     state['CTJ'] = ws["G" + str(i)].value
     state['CJT'] = ws["H" + str(i)].value
     state['JTC'] = ws["I" + str(i)].value
