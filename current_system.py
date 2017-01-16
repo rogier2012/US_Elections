@@ -37,6 +37,7 @@ for r in result:
         winner = r
 
 print("Winner is " + winner + " with " + str(max) + " seats")
+print(result)
 
 
 
