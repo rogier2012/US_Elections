@@ -34,7 +34,7 @@ def state_plurality_runoff(data):
         if result[c] > max:
             max = result[c]
             winner = c
-
+    print(result)
     if winner == "T":
         winner = "Trump"
     elif winner == "C":
