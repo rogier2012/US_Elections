@@ -1,6 +1,6 @@
+import sys
 
-
-points_distribution = [10,2,1]
+points_distribution = [2,1,0]
 def get_loser(candidates):
     return min(candidates, key=candidates.get)
 
@@ -24,7 +24,7 @@ def borda_runoff(data):
         check = check + v
     print(result)
     assert check == ((324893002*points_distribution[0])+(324893002*points_distribution[1]) + (324893002*points_distribution[2]))
-    max = 0
+    max = -sys.maxsize-1
     winner = ""
     del result[get_loser(result)]
     c1 = list(result.keys())[0]
