@@ -35,9 +35,9 @@ def borda_runoff(data):
             top_2_result[get_winner_triple(val, c1, c2)] += state[val]
     print(top_2_result)
 
-    for c in result:
-        if result[c] > max:
-            max = result[c]
+    for c in top_2_result:
+        if top_2_result[c] > max:
+            max = top_2_result[c]
             winner = c
 
     if winner == "T":
