@@ -9,6 +9,35 @@ votes = json.loads(json_data)
 rangeTable = [[5, 3], [3, 2], [2, 1]]
 
 
+
+def min_candidate(candidates):
+    return min(candidates, key=candidates.get)
+
+def get_winner_triple(triple, c1, c2):
+    if triple.index(c1) < triple.index(c2):
+        return c1
+    else:
+        return c2
+
+def get_runoff_winner(candidates):
+    triples = ["CJT", "CTJ", "JCT", "JTC", "TJC", "TCJ"]
+    del candidates[min_candidate(candidates)]
+    c1 = list(candidates.keys())[0]
+    c2 = list(candidates.keys())[1]
+    top_2_result = {c1: 0, c2: 0}
+    for state in votes:
+        for index, val in enumerate(triples):
+            top_2_result[get_winner_triple(val, c1, c2)] += state[val]
+    print(top_2_result)
+    max = -sys.maxsize - 1
+    for c in top_2_result:
+        if top_2_result[c] > max:
+            max = top_2_result[c]
+            winner = c
+    return winner
+
+
+
 def randomTable():
     res = list()
     for i in range(0, 3):
