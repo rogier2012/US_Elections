@@ -9,31 +9,12 @@ namesTable = {"J":"Johnson", "C":"Clinton", "T":"Trump"}
 rangeTable = [[2,2],[1,1],[0,0]]
 
 
-def min_candidate(candidates):
-    return min(candidates, key=candidates.get)
 
 def get_winner_triple(triple, c1, c2):
     if triple.index(c1) < triple.index(c2):
         return c1
     else:
         return c2
-
-def get_runoff_winner(candidates):
-    triples = ["CJT", "CTJ", "JCT", "JTC", "TJC", "TCJ"]
-    del candidates[min_candidate(candidates)]
-    c1 = list(candidates.keys())[0]
-    c2 = list(candidates.keys())[1]
-    top_2_result = {c1: 0, c2: 0}
-    for state in votes:
-        for index, val in enumerate(triples):
-            top_2_result[get_winner_triple(val, c1, c2)] += state[val]
-    print(top_2_result)
-    max = -sys.maxsize - 1
-    for c in top_2_result:
-        if top_2_result[c] > max:
-            max = top_2_result[c]
-            winner = c
-    return winner
 
 
 
@@ -62,8 +43,7 @@ def generate_range(triple, amount, rand=False):
 def get_data(data):
     result = {"C": 0, "T": 0, "J": 0}
     triples = {"CJT":0, "CTJ":0, "JCT":0, "JTC":0, "TJC":0, "TCJ":0}
-    # for state in data:
-    step = 1000000
+    step = 1000
     total = 324893002//step
     for key, val in triples.items():
         total_score_trip = {"T": 0, "C": 0, "J":0}
@@ -80,8 +60,8 @@ def get_data(data):
         result[k] = v/total
     print("generated scores per candidate: ")
     print(result)
-    print("Runoff winner is: ")
-    print(namesTable[get_runoff_winner(result)])
+    print("winner is:" + max(result, key=result.get))
 
-# for i in range(0,10):
-get_data(votes)
+
+for i in range(0,10):
+    get_data(votes)
