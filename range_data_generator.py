@@ -5,9 +5,8 @@ import sys
 
 json_data = open("votes.json").read()
 votes = json.loads(json_data)
-
-rangeTable = [[5, 3], [3, 2], [2, 1]]
-
+namesTable = {"J":"Johnson", "C":"Clinton", "T":"Trump"}
+rangeTable = [[2,2],[1,1],[0,0]]
 
 
 
@@ -64,13 +63,11 @@ def get_data(data):
     print("winner is:" + max(result, key=result.get))
 
 
-for i in range(0,10):
-    get_data(votes)
 
 def get_data_state(data):
     result = {"C": 0, "T": 0, "J": 0}
     triples = {"CJT": 0, "CTJ": 0, "JCT": 0, "JTC": 0, "TJC": 0, "TCJ": 0}
-    step = 100
+    step = 1000
 
     for state in data:
         score_state = {"T": 0, "C": 0, "J": 0}
@@ -88,6 +85,10 @@ def get_data_state(data):
 
     return result
 
+
+
+
+
 total = dict()
 times = 5
 for i in range(times):
@@ -95,4 +96,9 @@ for i in range(times):
     for key, value in res1.items():
         total[key] = total.get(key, 0) + (value/times)
 
+print("Overall US")
+for i in range(0,10):
+    get_data(votes)
+
+print("State")
 print(total)
